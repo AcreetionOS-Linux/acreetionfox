@@ -1,0 +1,22 @@
+name: Mirror to Destination-Repo
+
+on:
+  push:
+    branches:
+      - main  # Or the branch you are mirroring from GitLab
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Repository
+        uses: actions/checkout@v4
+        with:
+          repository: Sprunglesonthehub/acreetionfox  # Replace with the name of your Source-Repo
+          token: ${{ secrets.GITHUB_TOKEN }}  # Use the default GitHub token for this step
+          fetch-depth: 0  # Fetch all history, {Link: according to GitHub https://docs.github.com/en/actions/security-guides/automatic-token-authentication#token-permissions}
+
+      - name: Mirror to Destination Repository
+        run: |
+          git remote add destination https://AcreetionOS-Linux:${{ secrets.DESTINATION_REPO_TOKEN }}@github.com/AcreetionOS-Linux/acreetion-fox.git  # Replace with the URL of your Destination-Repo
+          git push destination --mirror
