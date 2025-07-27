@@ -13,7 +13,7 @@ jobs:
       - name: Checkout the Source Repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Full history for mirror
+          fetch-depth: 0
 
       - name: Set up Git Identity
         run: |
@@ -21,9 +21,11 @@ jobs:
           git config --global user.email "natalie@acreetionos.org"
 
       - name: Add Destination Remote and Push
+        env:
+          DEST_TOKEN: ${{ secrets.MIRROR_TO_ACREETIONOS_LINUX }}
         run: |
-          echo "Setting up credentials..."
-          git remote add destination https://x-access-token:${{ secrets.MIRROR_TO_ACREETIONOS_LINUX }}@github.com/AcreetionOS-Linux/acreetion-fox.git
+          echo "Adding destination remote..."
+          git remote add destination https://AcreetionOS-Linux:${DEST_TOKEN}@github.com/AcreetionOS-Linux/acreetion-fox.git
 
           echo "Verifying remotes..."
           git remote -v
