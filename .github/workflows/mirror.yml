@@ -3,7 +3,7 @@ name: Mirroring to AcreetionOS-Linux
 on:
   push:
     branches:
-      - main
+      - main  # Mirror when code is pushed to main
 
 jobs:
   mirror:
@@ -13,7 +13,7 @@ jobs:
       - name: Checkout the Source Repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 0  # Ensure full history for proper mirroring
 
       - name: Set up Git Identity
         run: |
