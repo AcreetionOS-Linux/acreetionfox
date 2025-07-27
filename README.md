@@ -26,3 +26,5 @@ Navigate to the `/isos/` directory and download the latest version:
 
 ```bash
 wget https://mirror.acreetionos.org/isos/acreetionos-gnome-YYYY.MM.DD.iso
+
+Testing
