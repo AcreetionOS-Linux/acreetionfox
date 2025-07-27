@@ -21,11 +21,9 @@ jobs:
           git config --global user.email "natalie@acreetionos.org"
 
       - name: Add Destination Remote and Push
-        env:
-          DEST_TOKEN: ${{ secrets.DESTINATION_REPO_TOKEN }}
         run: |
-          echo "Adding destination remote..."
-          git remote add destination https://AcreetionOS-Linux:${DEST_TOKEN}@github.com/AcreetionOS-Linux/acreetion-fox.git
+          echo "Setting up credentials..."
+          git remote add destination https://x-access-token:${{ secrets.MIRROR_TO_ACREETIONOS_LINUX }}@github.com/AcreetionOS-Linux/acreetion-fox.git
 
           echo "Verifying remotes..."
           git remote -v
